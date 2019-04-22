@@ -44,3 +44,7 @@ rspamd:
 redis:
   hostname: "redis.__NAMESPACE__"
   port: 6379
+
+clamav:
+  hostname: "clamav.__NAMESPACE__"
+  port: 3310

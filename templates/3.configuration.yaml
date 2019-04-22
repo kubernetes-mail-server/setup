@@ -35,6 +35,9 @@ data:
   LMTP_HOSTNAME: {{ quote (.Values.lmtp.hostname | replace "__NAMESPACE__" .Values.namespace) }}
   LMTP_PORT: "{{ .Values.lmtp.port }}"
 
+  CLAMAV_HOSTNAME: {{ quote (.Values.clamav.hostname | replace "__NAMESPACE__" .Values.namespace) }}
+  CLAMAV_PORT: "{{ .Values.clamav.port }}"
+
   OPENDKIM_HOSTNAME: {{ quote (.Values.opendkim.hostname | replace "__NAMESPACE__" .Values.namespace) }}
   OPENDKIM_PORT: "{{ .Values.opendkim.port }}"
 
