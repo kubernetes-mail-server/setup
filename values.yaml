@@ -1,1 +1,13 @@
+
 namespace: mail-server
+
+database:
+  hostname: database.__NAMESPACE__
+  port: 3306
+  read_username: read_user
+  read_password: this_is_a_secure_read_only_password
+  write_username: write_user
+  write_password: this_is_a_secure_write_allowed_password
+  root_password: some_secure_root_password
+  name: __NAMESPACE__
+  encoding: utf8
