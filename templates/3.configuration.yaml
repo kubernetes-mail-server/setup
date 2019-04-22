@@ -14,7 +14,14 @@ data:
 
   server.domain: "{{ .Values.server.domain }}"
   server.hostname: {{ quote (.Values.server.hostname | replace "__DOMAIN__" .Values.server.domain) }}
+---
 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: connection-map
+  namespace: {{ .Values.namespace }}
+data:
   POSTFIX_HOSTNAME: {{ quote (.Values.postfix.hostname | replace "__NAMESPACE__" .Values.namespace) }}
   POSTFIX_PORT: "{{ .Values.postfix.port }}"
 
@@ -29,7 +36,6 @@ data:
 
   REDIS_HOSTNAME: {{ quote (.Values.redis.hostname | replace "__NAMESPACE__" .Values.namespace) }}
   REDIS_PORT: "{{ .Values.redis.port }}"
----
 
 apiVersion: v1
 kind: ConfigMap
