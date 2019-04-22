@@ -18,3 +18,13 @@ data:
   admin.admin_username: "{{ .Values.admin.username }}"
   admin.admin_password: "{{ .Values.admin.password }}"
   admin.admin_email: {{ quote (.Values.admin.email | replace "__DOMAIN__" .Values.server.domain) }}
+
+
+  lmtp.hostname: {{ quote (.Values.lmtp.hostname | replace "__NAMESPACE__" .Values.namespace) }}
+  lmtp.port: "{{ .Values.lmtp.port }}"
+
+  opendkim.hostname: {{ quote (.Values.opendkim.hostname | replace "__NAMESPACE__" .Values.namespace) }}
+  opendkim.port: "{{ .Values.opendkim.port }}"
+
+  rspamd.hostname: {{ quote (.Values.opendkim.hostname | replace "__NAMESPACE__" .Values.namespace) }}
+  rspamd.port: "{{ .Values.rspamd.port }}"

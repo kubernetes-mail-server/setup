@@ -20,3 +20,16 @@ admin:
   username: admin
   password: admin_password_1234
   email: info@__DOMAIN__
+
+
+lmtp:
+  hostname: dovecot.__NAMESPACE__
+  port: 24
+
+opendkim:
+  hostname: opendkim.__NAMESPACE__
+  port: 8891
+
+rspamd:
+  hostname: rspamd.__NAMESPACE__
+  port: 11332
