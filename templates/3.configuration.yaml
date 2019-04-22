@@ -6,10 +6,6 @@ metadata:
 data:
   database.hostname: {{ quote (.Values.database.hostname | replace "__NAMESPACE__" .Values.namespace) }}
   database.port: "{{ .Values.database.port }}"
-  database.read_username: "{{ .Values.database.read_username }}"
-  database.read_password: "{{ .Values.database.read_password }}"
-  database.write_username: "{{ .Values.database.write_username }}"
-  database.write_password: "{{ .Values.database.write_password }}"
   database.root_password: "{{ .Values.database.root_password }}"
   database.name: {{ quote (.Values.database.name | replace "__NAMESPACE__" .Values.namespace | replace "-" "_") }}
   database.encoding: "{{ .Values.database.encoding }}"
@@ -36,3 +32,25 @@ data:
 
   rspamd.hostname: {{ quote (.Values.opendkim.hostname | replace "__NAMESPACE__" .Values.namespace) }}
   rspamd.port: "{{ .Values.rspamd.port }}"
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: read-database
+  namespace: {{ .Values.namespace }}
+data:
+  database.username: "{{ .Values.database.read_username }}"
+  database.password: "{{ .Values.database.read_password }}"
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: write-database
+  namespace: {{ .Values.namespace }}
+data:
+  database.username: "{{ .Values.database.write_username }}"
+  database.password: "{{ .Values.database.write_password }}"
+---
+
