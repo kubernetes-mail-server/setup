@@ -11,3 +11,12 @@ database:
   root_password: some_secure_root_password
   name: __NAMESPACE__
   encoding: utf8
+
+server:
+  domain: antimatter-studios.com
+  hostname: s2.__DOMAIN__
+
+admin:
+  username: admin
+  password: admin_password_1234
+  email: info@__DOMAIN__

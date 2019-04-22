@@ -13,3 +13,8 @@ data:
   database.root_password: "{{ .Values.database.root_password }}"
   database.name: {{ quote (.Values.database.name | replace "__NAMESPACE__" .Values.namespace | replace "-" "_") }}
   database.encoding: "{{ .Values.database.encoding }}"
+
+  # These values are used to initialise the administration access (You should change them immediately)
+  admin.admin_username: "{{ .Values.admin.username }}"
+  admin.admin_password: "{{ .Values.admin.password }}"
+  admin.admin_email: {{ quote (.Values.admin.email | replace "__DOMAIN__" .Values.server.domain) }}
