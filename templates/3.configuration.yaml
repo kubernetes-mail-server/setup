@@ -19,6 +19,14 @@ data:
   admin.admin_password: "{{ .Values.admin.password }}"
   admin.admin_email: {{ quote (.Values.admin.email | replace "__DOMAIN__" .Values.server.domain) }}
 
+  general.recipient_delimiter: {{ .Values.general.recipient_delimiter }}
+  general.postmaster: {{ quote (.Values.general.postmaster | replace "__DOMAIN__" .Values.server.domain) }}
+
+  server.domain: "{{ .Values.server.domain }}"
+  server.hostname: {{ quote (.Values.server.hostname | replace "__DOMAIN__" .Values.server.domain) }}
+
+  postfix.hostname: {{ quote (.Values.postfix.hostname | replace "__NAMESPACE__" .Values.namespace) }}
+  postfix.port: "{{ .Values.postfix.port }}"
 
   lmtp.hostname: {{ quote (.Values.lmtp.hostname | replace "__NAMESPACE__" .Values.namespace) }}
   lmtp.port: "{{ .Values.lmtp.port }}"

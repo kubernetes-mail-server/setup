@@ -1,35 +1,42 @@
 
-namespace: mail-server
+namespace: "mail-server"
 
 database:
-  hostname: database.__NAMESPACE__
+  hostname: "database.__NAMESPACE__"
   port: 3306
-  read_username: read_user
-  read_password: this_is_a_secure_read_only_password
-  write_username: write_user
-  write_password: this_is_a_secure_write_allowed_password
-  root_password: some_secure_root_password
-  name: __NAMESPACE__
-  encoding: utf8
+  read_username: "read_user"
+  read_password: "this_is_a_secure_read_only_password"
+  write_username: "write_user"
+  write_password: "this_is_a_secure_write_allowed_password"
+  root_password: "some_secure_root_password"
+  name: "__NAMESPACE__"
+  encoding: "utf8"
 
 server:
-  domain: antimatter-studios.com
-  hostname: s2.__DOMAIN__
+  domain: "antimatter-studios.com"
+  hostname: "s2.__DOMAIN__"
+
+general:
+  recipient_delimiter: "+"
+  postmaster: "info@__DOMAIN__"
 
 admin:
-  username: admin
-  password: admin_password_1234
-  email: info@__DOMAIN__
+  username: "admin"
+  password: "admin_password_1234"
+  email: "info@__DOMAIN__"
 
+postfix:
+  hostname: "postfix.__NAMESPACE__"
+  port: 25
 
 lmtp:
-  hostname: dovecot.__NAMESPACE__
+  hostname: "dovecot.__NAMESPACE__"
   port: 24
 
 opendkim:
-  hostname: opendkim.__NAMESPACE__
+  hostname: "opendkim.__NAMESPACE__"
   port: 8891
 
 rspamd:
-  hostname: rspamd.__NAMESPACE__
+  hostname: "rspamd.__NAMESPACE__"
   port: 11332
