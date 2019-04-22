@@ -23,4 +23,4 @@ jobs:
       if: branch = master and type != pull_request
       script:
         - export KUBECONFIG=$PWD/kubeconfig
-        - helm template -f $PWD/values.yaml $PWD/kubernetes | kubectl apply -f -
+        - helm template -f $PWD/values.yaml $PWD | kubectl apply -f -
