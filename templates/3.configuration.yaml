@@ -36,6 +36,7 @@ data:
 
   REDIS_HOSTNAME: {{ quote (.Values.redis.hostname | replace "__NAMESPACE__" .Values.namespace) }}
   REDIS_PORT: "{{ .Values.redis.port }}"
+---
 
 apiVersion: v1
 kind: ConfigMap
