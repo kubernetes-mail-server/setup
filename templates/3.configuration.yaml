@@ -4,16 +4,23 @@ metadata:
   name: {{ .Values.namespace }}
   namespace: {{ .Values.namespace }}
 data:
-  # These values are used to initialise the administration access (You should change them immediately)
-  admin.admin_username: "{{ .Values.admin.username }}"
-  admin.admin_password: "{{ .Values.admin.password }}"
-  admin.admin_email: {{ quote (.Values.admin.email | replace "__DOMAIN__" .Values.server.domain) }}
-
   general.recipient_delimiter: {{ .Values.general.recipient_delimiter }}
   general.postmaster: {{ quote (.Values.general.postmaster | replace "__DOMAIN__" .Values.server.domain) }}
 
   server.domain: "{{ .Values.server.domain }}"
   server.hostname: {{ quote (.Values.server.hostname | replace "__DOMAIN__" .Values.server.domain) }}
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.namespace }}
+  namespace: {{ .Values.namespace }}
+data:
+  # These values are used to initialise the administration access (You should change them immediately)
+  ADMIN_USERNAME: "{{ .Values.admin.username }}"
+  ADMIN_PASSWORD: "{{ .Values.admin.password }}"
+  ADMIN_EMAIL: {{ quote (.Values.admin.email | replace "__DOMAIN__" .Values.server.domain) }}
 ---
 
 apiVersion: v1
