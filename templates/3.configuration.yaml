@@ -37,6 +37,28 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
+  name: database-common
+  namespace: {{ .Values.namespace }}
+data:
+  DATABASE_HOSTNAME: {{ quote (.Values.database.hostname | replace "__NAMESPACE__" .Values.namespace) }}
+  DATABASE_PORT: "{{ .Values.database.port }}"
+  DATABASE_NAME: {{ quote (.Values.database.name | replace "__NAMESPACE__" .Values.namespace | replace "-" "_") }}
+  DATABASE_ENCODING: "{{ .Values.database.encoding }}"
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: database-root
+  namespace: {{ .Values.namespace }}
+data:
+  DATABASE_USERNAME: "root"
+  DATABASE_PASSWORD: "{{ .Values.database.root_password }}"
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
   name: database-read
   namespace: {{ .Values.namespace }}
 data:
