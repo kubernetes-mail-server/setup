@@ -40,8 +40,8 @@ metadata:
   name: database-read
   namespace: {{ .Values.namespace }}
 data:
-  database.username: "{{ .Values.database.read_username }}"
-  database.password: "{{ .Values.database.read_password }}"
+  DATABASE_USERNAME: "{{ .Values.database.read_username }}"
+  DATABASE_PASSWORD: "{{ .Values.database.read_password }}"
 ---
 
 apiVersion: v1
@@ -50,7 +50,7 @@ metadata:
   name: database-write
   namespace: {{ .Values.namespace }}
 data:
-  database.username: "{{ .Values.database.write_username }}"
-  database.password: "{{ .Values.database.write_password }}"
+  DATABASE_USERNAME: "{{ .Values.database.write_username }}"
+  DATABASE_PASSWORD: "{{ .Values.database.write_password }}"
 ---
 
