@@ -40,3 +40,7 @@ opendkim:
 rspamd:
   hostname: "rspamd.__NAMESPACE__"
   port: 11332
+
+redis:
+  hostname: "redis.__NAMESPACE__"
+  port: 6379
