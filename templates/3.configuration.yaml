@@ -14,7 +14,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Values.namespace }}
+  name: admin-panel
   namespace: {{ .Values.namespace }}
 data:
   # These values are used to initialise the administration access (You should change them immediately)
