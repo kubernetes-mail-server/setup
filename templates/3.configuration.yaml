@@ -37,7 +37,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: read-database
+  name: database-read
   namespace: {{ .Values.namespace }}
 data:
   database.username: "{{ .Values.database.read_username }}"
@@ -47,7 +47,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: write-database
+  name: database-write
   namespace: {{ .Values.namespace }}
 data:
   database.username: "{{ .Values.database.write_username }}"
