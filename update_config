@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-if [ -v $(command -v helm) ]; then
+if [ -z $(command -v helm) ]; then
     echo "Helm is not installed, cannot continue"
     exit 0
 fi
 
-if [ -v $(command -v kubectl) ]; then
+if [ -z $(command -v kubectl) ]; then
     echo "Kubectl is not installed, cannot continue"
     exit 0
 fi
