@@ -44,9 +44,6 @@ data:
   POSTFIX_PORT: "{{ .Values.postfix.port }}"
   POSTFIX_SUBMISSION_PORT: "{{ .Values.postfix.submission_port }}"
 
-  LMTP_HOSTNAME: {{ quote (.Values.lmtp.hostname | replace "__NAMESPACE__" .Values.namespace) }}
-  LMTP_PORT: "{{ .Values.lmtp.port }}"
-
   CLAMAV_HOSTNAME: {{ quote (.Values.clamav.hostname | replace "__NAMESPACE__" .Values.namespace) }}
   CLAMAV_PORT: "{{ .Values.clamav.port }}"
 

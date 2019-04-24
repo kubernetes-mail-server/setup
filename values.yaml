@@ -39,10 +39,6 @@ postfix:
   port: 25
   submission_port: 587
 
-lmtp:
-  hostname: "dovecot.__NAMESPACE__"
-  port: 24
-
 opendkim:
   hostname: "opendkim.__NAMESPACE__"
   port: 8891
