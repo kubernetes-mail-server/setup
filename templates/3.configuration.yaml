@@ -1,14 +1,11 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Values.namespace }}
+  name: general
   namespace: {{ .Values.namespace }}
 data:
-  general.recipient_delimiter: {{ .Values.general.recipient_delimiter }}
-  general.postmaster: {{ quote (.Values.general.postmaster | replace "__DOMAIN__" .Values.server.domain) }}
-
-  server.domain: "{{ .Values.server.domain }}"
-  server.hostname: {{ quote (.Values.server.hostname | replace "__DOMAIN__" .Values.server.domain) }}
+  RECIPIENT_DELIMITER: {{ .Values.general.recipient_delimiter }}
+  POSTMASTER: {{ quote (.Values.general.postmaster | replace "__DOMAIN__" .Values.server.domain) }}
 ---
 
 apiVersion: v1
