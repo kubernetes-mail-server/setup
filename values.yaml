@@ -25,6 +25,15 @@ admin:
   password: "admin_password_1234"
   email: "info@__DOMAIN__"
 
+dovecot:
+  hostname: "dovecot.__NAMESPACE__"
+  lmtp: 24
+  pop3: 110
+  pop3_ssl: 993
+  imap: 143
+  imap_ssl: 995
+  submission: 587
+
 postfix:
   hostname: "postfix.__NAMESPACE__"
   port: 25

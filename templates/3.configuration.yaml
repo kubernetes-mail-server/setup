@@ -29,6 +29,17 @@ metadata:
   name: connection-map
   namespace: {{ .Values.namespace }}
 data:
+  DOMAIN: "{{ .Values.server.domain }}"
+  HOSTNAME: {{ quote (.Values.server.hostname | replace "__DOMAIN__" .Values.server.domain) }}
+
+  DOVECOT_HOSTNAME: {{ quote (.Values.dovecot.hostname | replace "__NAMESPACE__" .Values.namespace) }}
+  DOVECOT_LMTP: "{{ .Values.dovecot.lmtp }}"
+  DOVECOT_POP3: "{{ .Values.dovecot.pop3 }}"
+  DOVECOT_POP3_SSL: "{{ .Values.dovecot.pop3_ssl }}"
+  DOVECOT_IMAP: "{{ .Values.dovecot.imap }}"
+  DOVECOT_IMAP_SSL: "{{ .Values.dovecot.imap_ssl }}"
+  DOVECOT_SUBMISSION: "{{ .Values.dovecot.submission }}"
+
   POSTFIX_HOSTNAME: {{ quote (.Values.postfix.hostname | replace "__NAMESPACE__" .Values.namespace) }}
   POSTFIX_PORT: "{{ .Values.postfix.port }}"
   POSTFIX_SUBMISSION_PORT: "{{ .Values.postfix.submission_port }}"
