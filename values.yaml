@@ -28,6 +28,7 @@ admin:
 postfix:
   hostname: "postfix.__NAMESPACE__"
   port: 25
+  submission_port: 587
 
 lmtp:
   hostname: "dovecot.__NAMESPACE__"

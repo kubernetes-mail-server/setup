@@ -31,6 +31,7 @@ metadata:
 data:
   POSTFIX_HOSTNAME: {{ quote (.Values.postfix.hostname | replace "__NAMESPACE__" .Values.namespace) }}
   POSTFIX_PORT: "{{ .Values.postfix.port }}"
+  POSTFIX_SUBMISSION_PORT: "{{ .Values.postfix.submission_port }}"
 
   LMTP_HOSTNAME: {{ quote (.Values.lmtp.hostname | replace "__NAMESPACE__" .Values.namespace) }}
   LMTP_PORT: "{{ .Values.lmtp.port }}"
