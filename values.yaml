@@ -17,6 +17,8 @@ server:
   hostname: "s2.__DOMAIN__"
 
 general:
+  storage_size: "50Gi"
+  database_size: "1Gi"
   recipient_delimiter: "+"
   postmaster: "info@__DOMAIN__"
 

@@ -4,7 +4,9 @@ metadata:
   name: general
   namespace: {{ .Values.namespace }}
 data:
-  RECIPIENT_DELIMITER: {{ .Values.general.recipient_delimiter }}
+  STORAGE_SIZE: "{{ .Values.general.storage_size }}"
+  DATABASE_SIZE: "{{ .Values.general.database_size }}"
+  RECIPIENT_DELIMITER: "{{ .Values.general.recipient_delimiter }}"
   POSTMASTER: {{ quote (.Values.general.postmaster | replace "__DOMAIN__" .Values.server.domain) }}
 ---
 
@@ -23,7 +25,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: connection-map
+  name: services-info
   namespace: {{ .Values.namespace }}
 data:
   DOMAIN: "{{ .Values.server.domain }}"
@@ -40,6 +42,14 @@ data:
   POSTFIX_HOSTNAME: {{ quote (.Values.postfix.hostname | replace "__NAMESPACE__" .Values.namespace) }}
   POSTFIX_PORT: "{{ .Values.postfix.port }}"
   POSTFIX_SUBMISSION_PORT: "{{ .Values.postfix.submission_port }}"
+  POSTFIX_SUBMISSION_SSL: "no"
+  POSTFIX_SUBMISSION_SSL_VERIFY: "no"
+  POSTFIX_MESSAGE_SIZE_LIMIT: "50000000"
+  POSTFIX_RELAY_NETS: "10.0.0.0/8"
+  POSTFIX_RELAY_HOST: ""
+  POSTFIX_LOGGING_LEVEL: ""
+  # change this in the postfix project
+  ENTRYPOINT_DEBUG: ""
 
   CLAMAV_HOSTNAME: {{ quote (.Values.clamav.hostname | replace "__NAMESPACE__" .Values.namespace) }}
   CLAMAV_PORT: "{{ .Values.clamav.port }}"
@@ -49,6 +59,13 @@ data:
 
   RSPAMD_HOSTNAME: {{ quote (.Values.rspamd.hostname | replace "__NAMESPACE__" .Values.namespace) }}
   RSPAMD_PORT: "{{ .Values.rspamd.port }}"
+  RSPAMD_PASSWORD: "supersecret"
+  RSPAMD_PORT_0: "11332"
+  # what does port 1 do?
+  RSPAMD_PORT_1: "11333"
+  RSPAMD_PORT_2: "11334"
+  RSPAMD_WORKER_PROXY_PORT: "11332"
+  RSPAMD_WORKER_CONTROLLER_PORT: "11334"
 
   REDIS_HOSTNAME: {{ quote (.Values.redis.hostname | replace "__NAMESPACE__" .Values.namespace) }}
   REDIS_PORT: "{{ .Values.redis.port }}"
@@ -96,3 +113,34 @@ data:
   DATABASE_PASSWORD: "{{ .Values.database.write_password }}"
 ---
 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dovecot-haproxy
+  namespace: {{ .Values.namespace }}
+data:
+  HAPROXY_IMAP: "yes"
+  HAPROXY_IMAPS: "yes"
+  HAPROXY_POP3: "yes"
+  HAPROXY_POP3S: "yes"
+  # If you enable lmtp+haproxy you will have by default problems to receive email
+  # Unless you have a special configuration you've enabled
+  HAPROXY_LMTP: "no"
+  HAPROXY_SUBMISSION: "yes"
+  HAPROXY_TRUSTED_NETWORKS: "10.0.0.0/8"
+  HAPROXY_TIMEOUT: "5s"
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dovecot-logging
+  namespace: {{ .Values.namespace }}
+data:
+  ENTRYPOINT_DEBUG: ""
+  LOGGING_AUTH_VERBOSE: "yes"
+  LOGGING_AUTH_VERBOSE_PASSWORDS: "yes"
+  LOGGING_AUTH_DEBUG: "yes"
+  LOGGING_AUTH_DEBUG_PASSWORDS: "yes"
+  LOGGING_MAIL_DEBUG: "yes"
+  LOGGING_VERBOSE_SSL: "yes"
