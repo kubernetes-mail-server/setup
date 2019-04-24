@@ -1,13 +1,32 @@
 #!/usr/bin/env bash
 
+# foreground colours
+red="\033[31m"
+grn="\033[32m"
+blu="\033[34m"
+yel="\033[33m"
+
+# This 'terminates' any terminal escape codes you run, so it's like an 'end marker'
+end="\033[0m"
+
+# Some icons
+chk=$'\xE2\x9C\x94 '
+mss=$'\xE2\x9D\x8C '
+wrn=$'\xE2\x9A\xA0 '
+
 if [ -z $(command -v helm) ]; then
-    echo "Helm is not installed, cannot continue"
+    echo -e "${red}${mss} ERROR: Please install helm{end}"
+    echo -e "${blu}MacOS:${end} brew install helm"
     exit 0
+else
+    echo -e "${grn}${chk} helm is installed as expected${end}"
 fi
 
 if [ -z $(command -v kubectl) ]; then
-    echo "Kubectl is not installed, cannot continue"
+    echo -e "${red}${mss} ERROR: kubectl is not installed, we cannot continue${end}"
     exit 0
+else
+    echo -e "${grn}${chk} kubectl is installed as expected${end}"
 fi
 
 helm template ${PWD} | kubectl apply -f -
