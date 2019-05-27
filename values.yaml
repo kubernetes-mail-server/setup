@@ -14,7 +14,7 @@ database:
 
 server:
   domain: "antimatter-studios.com"
-  hostname: "s3.__DOMAIN__"
+  hostname: "s5.__DOMAIN__"
 
 general:
   storage_size: "50Gi"
