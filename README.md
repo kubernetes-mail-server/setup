@@ -25,6 +25,9 @@ To install "yq":
 - **MacOS**: brew install yq
 - **Windows**: (TODO)
 
+To install "travis":
+- **MacOS**: brew install travis
+
 ## Generating a kubeconfig file to use for deployment
 
 Just run the ```create_kubeconfig``` script from this project. It will read the values.yaml file and generate what should be a working kubeconfig. 
