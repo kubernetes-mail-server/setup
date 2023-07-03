@@ -39,6 +39,7 @@ data:
   DOVECOT_IMAP: "{{ .Values.dovecot.imap }}"
   DOVECOT_IMAP_SSL: "{{ .Values.dovecot.imap_ssl }}"
   DOVECOT_SUBMISSION: "{{ .Values.dovecot.submission }}"
+  DOVECOT_MAX_IP_CONNECTIONS: "{{ .Values.dovecot.max_ip_connections }}"
 
   POSTFIX_HOSTNAME: {{ quote (.Values.postfix.hostname | replace "__NAMESPACE__" .Values.namespace) }}
   POSTFIX_PORT: "{{ .Values.postfix.port }}"
